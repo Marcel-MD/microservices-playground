@@ -30,21 +30,34 @@ namespace PlatformService.Controllers
         public ActionResult<PlatformDto> GetPlatformById(int id)
         {
             var platform = _repository.GetPlatformById(id);
+
+            if (platform == null) {
+                return NotFound();
+            }
+
             return Ok(_mapper.Map<PlatformDto>(platform));
         }
 
         [HttpPost]
-        public ActionResult CreatePlatform(CreatePlatformDto dto)
+        public ActionResult<PlatformDto> CreatePlatform(CreatePlatformDto dto)
         {
-            _repository.CreatePlatform(_mapper.Map<Platform>(dto));
+            var platform = _mapper.Map<Platform>(dto);
+            _repository.CreatePlatform(platform);
             _repository.SaveChanges();
-            return Ok();
+            
+            var platformDto = _mapper.Map<PlatformDto>(platform);
+            return Ok(platformDto);
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeletePlatform(int id)
         {
             var platform = _repository.GetPlatformById(id);
+
+            if (platform == null) {
+                return NotFound();
+            }
+            
             _repository.DeletePlatform(platform);
             _repository.SaveChanges();
             return NoContent();
