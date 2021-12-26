@@ -25,5 +25,16 @@ namespace PlatformService.SyncDataServices.Http
                 Console.WriteLine("--> Post to command service was successful!");
             }
         }
+
+        public async Task RemovePlatformFromCommand(int id)
+        {
+            var uri = _configuration["CommandServiceUri"] + id;
+            var response = await _httpClient.DeleteAsync(uri);
+
+            if(response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("--> Delete to command service was successful!");
+            }
+        }
     }
 }

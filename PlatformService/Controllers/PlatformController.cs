@@ -63,12 +63,21 @@ namespace PlatformService.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletePlatform(int id)
+        public async Task<ActionResult> DeletePlatform(int id)
         {
             var platform = _repository.GetPlatformById(id);
 
             if (platform == null) {
                 return NotFound();
+            }
+
+            try
+            {
+                await _client.RemovePlatformFromCommand(id);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine("--> Could not remove sync data");
             }
             
             _repository.DeletePlatform(platform);
