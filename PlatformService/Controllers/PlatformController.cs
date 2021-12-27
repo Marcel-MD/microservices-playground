@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
@@ -13,9 +14,9 @@ namespace PlatformService.Controllers
     {
         private readonly IPlatformRepository _repository;
         private readonly IMapper _mapper;
-        private readonly ICommandDataClient _client;
+        private readonly IMessageBusClient _client;
 
-        public PlatformController(IPlatformRepository repository, IMapper mapper, ICommandDataClient client)
+        public PlatformController(IPlatformRepository repository, IMapper mapper, IMessageBusClient client)
         {
             _repository = repository;
             _mapper = mapper;
@@ -49,14 +50,16 @@ namespace PlatformService.Controllers
             _repository.SaveChanges();
             
             var platformDto = _mapper.Map<PlatformDto>(platform);
-            
+
             try
             {
-                await _client.SendPlatformToCommand(platformDto);
+                var messageDto = _mapper.Map<MessagePlatformDto>(platformDto);
+                messageDto.Event = "CreatePlatform";
+                _client.PublishNewMessage(messageDto);
             }
-            catch(Exception exception)
+            catch (Exception e)
             {
-                Console.WriteLine("--> Could not send sync data");
+                Console.WriteLine($"--> Could not send async message: {e.Message}");
             }
 
             return Ok(platformDto);
@@ -73,13 +76,16 @@ namespace PlatformService.Controllers
 
             try
             {
-                await _client.RemovePlatformFromCommand(id);
+                var platformDto = _mapper.Map<PlatformDto>(platform);
+                var messageDto = _mapper.Map<MessagePlatformDto>(platformDto);
+                messageDto.Event = "DeletePlatform";
+                _client.PublishNewMessage(messageDto);
             }
-            catch(Exception exception)
+            catch (Exception e)
             {
-                Console.WriteLine("--> Could not remove sync data");
+                Console.WriteLine($"--> Could not send async message: {e.Message}");
             }
-            
+
             _repository.DeletePlatform(platform);
             _repository.SaveChanges();
             return NoContent();
