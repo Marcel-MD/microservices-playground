@@ -53,7 +53,7 @@ namespace PlatformService.Controllers
 
             try
             {
-                var messageDto = _mapper.Map<MessagePlatformDto>(platformDto);
+                var messageDto = _mapper.Map<EventPlatformDto>(platformDto);
                 messageDto.Event = "CreatePlatform";
                 _client.PublishNewMessage(messageDto);
             }
@@ -77,7 +77,7 @@ namespace PlatformService.Controllers
             try
             {
                 var platformDto = _mapper.Map<PlatformDto>(platform);
-                var messageDto = _mapper.Map<MessagePlatformDto>(platformDto);
+                var messageDto = _mapper.Map<EventPlatformDto>(platformDto);
                 messageDto.Event = "DeletePlatform";
                 _client.PublishNewMessage(messageDto);
             }

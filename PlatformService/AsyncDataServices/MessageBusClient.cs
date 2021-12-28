@@ -34,7 +34,7 @@ public class MessageBusClient : IMessageBusClient
         }
     }
     
-    public void PublishNewMessage(MessagePlatformDto dto)
+    public void PublishNewMessage(EventPlatformDto dto)
     {
         var message = JsonSerializer.Serialize(dto);
 
@@ -49,16 +49,5 @@ public class MessageBusClient : IMessageBusClient
         _channel.BasicPublish(exchange: "trigger", routingKey: "", basicProperties: null, body: body);
 
         Console.WriteLine($"--> We have sent {message}");
-    }
-
-    public void Dispose()
-    {
-        Console.WriteLine("--> MessageBus Disposed");
-
-        if (_channel.IsOpen)
-        {
-            _channel.Close();
-            _connection.Close();
-        }
     }
 }
