@@ -22,7 +22,7 @@ namespace PlatformService.Data
             Console.WriteLine("--> Bootstraping Data...");
             context.Platforms.AddRange(
                 new Platform() { Name = ".NET", Publisher = "Microsoft", Cost = "Free" },
-                new Platform() { Name = "Sql Server Express", Publisher = "Microsoft", Cost = "Free" },
+                new Platform() { Name = "Node.js", Publisher = "OpenJS Foundation", Cost = "Free" },
                 new Platform() { Name = "Golang", Publisher = "Google", Cost = "Free" }
             );
 

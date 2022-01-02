@@ -33,4 +33,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Pre Populating the DataBase
+DbPreparation.Populate(app);
+
 app.Run();

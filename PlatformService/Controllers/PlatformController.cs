@@ -43,12 +43,12 @@ namespace PlatformService.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<PlatformDto>> CreatePlatform(CreatePlatformDto dto)
+        public ActionResult<PlatformDto> CreatePlatform(CreatePlatformDto dto)
         {
             var platform = _mapper.Map<Platform>(dto);
             _repository.CreatePlatform(platform);
             _repository.SaveChanges();
-            
+
             var platformDto = _mapper.Map<PlatformDto>(platform);
 
             try
@@ -66,11 +66,12 @@ namespace PlatformService.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeletePlatform(int id)
+        public ActionResult DeletePlatform(int id)
         {
             var platform = _repository.GetPlatformById(id);
 
-            if (platform == null) {
+            if (platform == null)
+            {
                 return NotFound();
             }
 
