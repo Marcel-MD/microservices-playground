@@ -1,0 +1,10 @@
+.platform-container {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+mat-card {
+  width: 300px;
+}
