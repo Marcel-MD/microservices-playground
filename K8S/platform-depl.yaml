@@ -33,13 +33,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: platform-nodeport
+  name: platform-loadbalancer
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: platformservice
   ports:
     - name: platformservice
       protocol: TCP
-      port: 80
+      port: 5000
       targetPort: 80
