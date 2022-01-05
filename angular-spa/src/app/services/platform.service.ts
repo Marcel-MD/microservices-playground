@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ErrorHandlerService } from './error-handler.service';
 import { Platform } from '../models/platform';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class PlatformService {
     private errorHandler: ErrorHandlerService
   ) {}
 
-  private url = 'http://localhost:5000/api/platforms';
+  private url = environment.platformsUrl;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

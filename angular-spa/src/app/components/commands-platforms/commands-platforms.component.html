@@ -1,0 +1,9 @@
+<h1>Select Platform</h1>
+
+<div class="platform-container">
+  <div *ngFor="let p of platforms" class="platform">
+    <button mat-raised-button routerLink="/commands/{{ p.id }}">
+      {{ p.name }}
+    </button>
+  </div>
+</div>

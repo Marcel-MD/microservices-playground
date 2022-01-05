@@ -1,8 +1,5 @@
 <div *ngIf="messageService.messages.length">
-  <div
-    *ngFor="let message of messageService.messages"
-    class="message-container"
-  >
+  <div *ngFor="let message of messageService.messages">
     <mat-card color="warn">{{ message }}</mat-card>
   </div>
 </div>

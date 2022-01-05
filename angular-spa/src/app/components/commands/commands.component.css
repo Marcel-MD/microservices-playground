@@ -1,0 +1,25 @@
+h1 {
+  text-align: center;
+  margin: 1em;
+  font-weight: bold;
+  color: #69f0ae;
+}
+
+.command {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 600px;
+  margin: 1em auto 1em auto;
+}
+
+.command-input {
+  max-width: 600px;
+  margin: 1em auto 1em auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

@@ -20,7 +20,33 @@ export class ErrorHandlerService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.messageService.add(`${operation} failed: ${error.message}`);
+      switch (error.status) {
+        case 0:
+          this.messageService.add(
+            'Network Error! Service is not available at the moment!'
+          );
+          break;
+
+        case 400:
+          this.messageService.add(
+            'Bad Request! Please fill in all the fields!'
+          );
+          break;
+
+        case 404:
+          this.messageService.add(
+            'Not Found! Resource you requested is missing!'
+          );
+          break;
+
+        case 500:
+          this.messageService.add('Server Error! Oops my bad :)');
+          break;
+
+        default:
+          this.messageService.add('Unknown Error! Check the console!');
+          break;
+      }
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

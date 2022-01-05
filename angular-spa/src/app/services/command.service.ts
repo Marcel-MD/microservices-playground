@@ -4,6 +4,7 @@ import { catchError, Observable } from 'rxjs';
 import { Command } from '../models/command';
 import { Platform } from '../models/platform';
 import { ErrorHandlerService } from './error-handler.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class CommandService {
     private errorHandler: ErrorHandlerService
   ) {}
 
-  private url = 'http://localhost:6000/api/c/platforms';
+  private url = environment.commandsUrl;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

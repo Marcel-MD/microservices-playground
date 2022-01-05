@@ -10,10 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { PlatformsComponent } from './components/platforms/platforms.component';
 import { CommandsComponent } from './components/commands/commands.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { CommandsPlatformsComponent } from './components/commands-platforms/commands-platforms.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { MessagesComponent } from './components/messages/messages.component';
     PlatformsComponent,
     CommandsComponent,
     MessagesComponent,
+    CommandsPlatformsComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

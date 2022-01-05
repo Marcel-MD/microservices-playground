@@ -1,10 +1,13 @@
 <mat-toolbar>
   <span>{{ title }}</span>
   <button mat-raised-button color="accent" routerLink="/platforms">
-    Platforms
+    Platforms Service
   </button>
   <button mat-raised-button color="accent" routerLink="/commands">
-    Commands
+    Commands Service
+  </button>
+  <button mat-raised-button color="primary" (click)="redirectToRabbitMQ()">
+    RabbitMQ
   </button>
 </mat-toolbar>
 <router-outlet></router-outlet>

@@ -22,10 +22,19 @@ export class PlatformsComponent implements OnInit {
       .subscribe((platforms) => (this.platforms = platforms));
   }
 
-  addPlatform(name: string, publisher: string, price: string): void {
+  name: string = '';
+  publisher: string = '';
+  cost: string = '';
+
+  addPlatform(): void {
     this.platformService
-      .addPlatform({ name, publisher, price } as Platform)
+      .addPlatform({
+        name: this.name,
+        publisher: this.publisher,
+        cost: this.cost,
+      } as Platform)
       .subscribe((platform) => {
+        if (!platform.id) return;
         this.platforms.push(platform);
       });
   }

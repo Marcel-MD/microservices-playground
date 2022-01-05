@@ -1,1 +1,23 @@
-<p>commands works!</p>
+<h1 *ngIf="platform">{{ platform.name }} Commands</h1>
+
+<mat-card class="command-input">
+  <mat-form-field appearance="standard">
+    <mat-label>How To</mat-label>
+    <input matInput [(ngModel)]="howTo" />
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>CLI Command</mat-label>
+    <input matInput [(ngModel)]="commandLine" />
+  </mat-form-field>
+  <button mat-button color="accent" (click)="addCommand()">ADD</button>
+</mat-card>
+
+<div *ngFor="let c of commands">
+  <mat-card *ngIf="c.id" class="command">
+    <div class="howTo">{{ c.howTo }}</div>
+    <div class="command">{{ c.commandLine }}</div>
+    <button mat-button color="warn" (click)="deletePlatform(c.id)">
+      DELETE
+    </button>
+  </mat-card>
+</div>
