@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Microservice Playground';
+  title = 'Microservices Playground';
 
   redirectToRabbitMQ(): void {
     window.location.href = environment.rabbitUrl;
