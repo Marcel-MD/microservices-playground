@@ -4,7 +4,7 @@
 
 Simple microservice application built with [ASP.NET](https://dotnet.microsoft.com/en-us/apps/aspnet).
 
-It's only propose was to get me familiar with basic concepts of [Docker](https://www.docker.com/), [Kubernetes](https://kubernetes.io/) and Async Communication between microservices using [RabbitMQ](https://www.rabbitmq.com/).
+It's only purpose was to get me familiar with basic concepts of [Docker](https://www.docker.com/), [Kubernetes](https://kubernetes.io/) and Async Communication between microservices using [RabbitMQ](https://www.rabbitmq.com/).
 
 I also made a SPA to recap [Angular](https://angular.io/).
 
